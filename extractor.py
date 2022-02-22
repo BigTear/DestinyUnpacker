@@ -358,7 +358,7 @@ class Package:
         self.nonce = binascii.unhexlify(''.join([gf.fill_hex_with_zeros(hex(x)[2:], 2) for x in nonce]))
 
     def decompress_block(self, block_bin):
-        decompressor = OodleDecompressor('I:/oo2core_8_win64.dll')
+        decompressor = OodleDecompressor(os.path.abspath('./oo2core_9_win64.dll'))
         decompressed = decompressor.decompress(block_bin)
         return decompressed
 
@@ -418,4 +418,8 @@ def unpack_all(path, custom_direc):
 
 if __name__ == '__main__':
     version = '3_0_0_4'
-    unpack_all('I:/SteamLibrary/steamapps/common/Destiny 2/packages/', custom_direc=f'I:/d2_output_{version}/')
+    try:
+        os.mkdir(f'F:/D2Unpak/d2_output_{version}/')
+    except:
+        pass
+    unpack_all('E:/SteamLibrary/steamapps/common/Destiny 2/packages', custom_direc=f'F:/D2Unpak/d2_output_{version}/')
